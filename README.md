@@ -33,9 +33,13 @@ The program is **student-style**, simple, and works for any new input in the sam
 4. Compile the Java code:
 
 ```bash
-javac Problem.java
+javac main.java
 
-
+```
+##Run
+```bash
+java main
+```
 Sample Input
 {
   "keys": { "n": 3, "k": 2 },
