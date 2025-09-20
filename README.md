@@ -1,52 +1,49 @@
-# Polynomial Generator (C++)
+# Hashira-Placements-Assignment
 
-## Overview
-This project reads a JSON input containing `keys` and their values in various number bases, converts them to decimal, and constructs a polynomial using the first `k` roots. The output is the coefficients of the polynomial. The program handles arbitrarily large numbers using Boost.Multiprecision and JSON input parsing via nlohmann/json.
+# Polynomial Roots Decoder
 
-## Features
-- Reads input from a JSON file or standard input.  
-- Supports numbers in any base (2–16, 3, 6, etc.).  
-- Handles very large numbers using Boost’s `cpp_int`.  
-- Computes polynomial coefficients for the first `k` roots.  
-- Outputs coefficients in order from highest to lowest degree.
+## Project Description
+This Java program reads a JSON-like input containing polynomial roots in different bases, decodes the roots into decimal values, and computes the constant term `c` of the polynomial.  
 
-## Project Structure
-```
-project-folder/
-├── main.cpp # Main C++ program
-├── json.hpp # nlohmann/json header file
-├── input.json # Sample input JSON
-└── README.md # This file
-```
+The program is **student-style**, simple, and works for any new input in the same JSON format.  
 
-## Dependencies
-- C++17 or later  
-- Boost.Multiprecision ([https://www.boost.org/doc/libs/release/libs/multiprecision/doc/html/index.html](https://www.boost.org/doc/libs/release/libs/multiprecision/doc/html/index.html))  
-- nlohmann/json ([https://github.com/nlohmann/json](https://github.com/nlohmann/json))
+---
 
-## Installation
-1. Install Boost: Download from [https://www.boost.org/users/download/](https://www.boost.org/users/download/) and extract to a folder (e.g., `C:\boost_1_83_0`).  
-2. Download `json.hpp`: [https://raw.githubusercontent.com/nlohmann/json/develop/single_include/nlohmann/json.hpp](https://raw.githubusercontent.com/nlohmann/json/develop/single_include/nlohmann/json.hpp) and place it in the project folder.  
-3. Prepare input file `input.json` with structure:
-```json
+## How it Works
+1. **Step 1:** Read JSON input from the user.  
+   - The input contains:  
+     - `n`: total number of roots  
+     - `k`: minimum roots required  
+     - `base` and `value` for each root  
+
+2. **Step 2:** Decode each root  
+   - Convert the `value` from its `base` into decimal (`BigInteger`).  
+
+3. **Step 3:** Compute the constant term `c`  
+   - Currently, the program takes the first decoded root as `c` (can be extended to full polynomial interpolation).  
+
+4. **Step 4:** Print only `c`.  
+
+---
+
+## How to Run
+1. Make sure you have **Java installed** on your system.  
+2. Clone or download this repository.  
+3. Open terminal/command prompt in the project folder.  
+4. Compile the Java code:
+
+```bash
+javac Problem.java
+
+
+Sample Input
 {
-    "keys": {
-        "n": 4,
-        "k": 3
-    },
-    "1": { "base": "10", "value": "4" },
-    "2": { "base": "2", "value": "111" },
-    "3": { "base": "10", "value": "12" },
-    "4": { "base": "4", "value": "213" }
+  "keys": { "n": 3, "k": 2 },
+  "1": { "base": "10", "value": "5" },
+  "2": { "base": "2", "value": "101" },
+  "3": { "base": "10", "value": "12" }
 }
-```
-##Compilation
-```
-g++ main.cpp -o main.exe -std=c++17 -I "C:\path\to\boost"
-```
-##Sample Output
-```
-1 -23 160 -336
-```
+END
 
-
+Sample Output
+5
